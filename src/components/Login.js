@@ -8,10 +8,19 @@ class Login extends React.Component {
   state = {
     open:1
   }
+  changeCards= (e) => {
+    
+    if(e.target.innerText === 'Login'){
+      this.setState({open:1})
+    }
+    if(e.target.innerText === 'Register'){
+      this.setState({open:0})
+    }
+  }
 
   render() {
     return <div>
-      <button >Login</button> <button >Register</button>
+      <button onClick={this.changeCards} >Login</button> <button onClick={this.changeCards}  >Register</button>
       {this.state.open ===0&& <SignUp/> }
       {this.state.open ===1&& <SignIn/> }
     </div>

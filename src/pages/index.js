@@ -12,7 +12,7 @@ import Login from '../components/Login'
 class index extends React.Component {
   
   state = {
-    
+    user: false
   }
  
  
@@ -27,6 +27,7 @@ componentDidMount(){
     if (firebaseUser) {
       
       console.log(firebaseUser)
+      this.setState({user:true})
       
      
     } else {
@@ -49,6 +50,7 @@ logout = () => {
 
       <div>
         <button onClick={this.logout}>Logout</button>
+        {this.state.user? <p>ta</p> : <p>nope</p>}
      <Login/>
       
       </div>
