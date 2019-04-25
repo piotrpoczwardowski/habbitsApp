@@ -7,6 +7,7 @@ import SEO from "../components/seo"
 
 import {auth, dbRef, db} from '../setupFirebase'
 import Login from '../components/Login'
+import {navigate} from 'gatsby'
 
 
 class index extends React.Component {
@@ -26,21 +27,22 @@ componentDidMount(){
   auth.onAuthStateChanged(firebaseUser => {
     if (firebaseUser) {
       
-      console.log(firebaseUser)
-      this.setState({user:true})
       
+      this.setState({user:true})
+      this.navigateWhenUser()
      
     } else {
       console.log("no-user");
-      this.setState({ user: null, userData: {} });
+     
     }
   });
-}
-logout = () => {
-  auth.signOut()
- 
 
   
+}
+
+
+navigateWhenUser = () =>{
+  navigate('/main/')
 }
   
 
@@ -49,7 +51,7 @@ logout = () => {
     return  (
 
       <div>
-        <button onClick={this.logout}>Logout</button>
+       
         {this.state.user? <p>ta</p> : <p>nope</p>}
      <Login/>
       
