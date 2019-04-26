@@ -1,12 +1,14 @@
 import React from "react"
 import {navigate} from 'gatsby'
 import { auth, dbRef, db } from "../setupFirebase"
+import MyHabbits from '../components/MyHabbits'
 
 class main extends React.Component {
   state = {
       user:{},
       allUsersData:{},
-      currentUserData: {}
+      currentUserData: {},
+      isLoading: true
   }
   componentWillMount(){
     auth.onAuthStateChanged(firebaseUser => {
@@ -17,7 +19,8 @@ class main extends React.Component {
       .then(resp => resp.json())
       .then(x => Object.values(x).map(user => {
         if(user.email === firebaseUser.email){
-          this.setState({currentUserData: user})
+          this.setState({currentUserData: user,
+          isLoading:false})
         }
       }))
         
@@ -60,8 +63,12 @@ console.log(this.state)
         <button onClick={this.show}>show</button>
          <p>{this.state.user.email}</p>
          <p>{this.state.currentUserData.nick}</p>
-        Main
-
+         
+         {this.state.isLoading? 'load': <div><MyHabbits currentUserData={this.state.currentUserData}/>
+           
+           </div>}
+        
+ 
     </div>
   }
 }
