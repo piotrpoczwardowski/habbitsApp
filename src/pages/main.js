@@ -15,16 +15,18 @@ class main extends React.Component {
       if (firebaseUser) {
         this.setState({user:firebaseUser})
         
-        fetch("https://obshab.firebaseio.com/users.json")
-      .then(resp => resp.json())
-      .then(x => Object.values(x).map(user => {
-        if(user.email === firebaseUser.email){
-          this.setState({currentUserData: user,
-          isLoading:false})
-        }
-      }))
+      //   fetch("https://obshab.firebaseio.com/users.json")
+      // .then(resp => resp.json())
+      // .then(x => Object.values(x).map(user => {
+      //   if(user.email === firebaseUser.email){
+      //     this.setState({currentUserData: user,
+      //     isLoading:false})
+      //   }
+      // }))
         
-        
+      dbRef.child('users').on('child_added', function(x){
+        console.log(x.val().email)
+      })
        
       } else {
         console.log("no-user");
