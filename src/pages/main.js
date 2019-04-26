@@ -3,16 +3,15 @@ import {navigate} from 'gatsby'
 import { auth, dbRef, db } from "../setupFirebase"
 
 class main extends React.Component {
-  state = {}
-
-  componentDidMount(){
-  
-    
+  state = {
+      user:{}
+  }
+  componentWillMount(){
     auth.onAuthStateChanged(firebaseUser => {
       if (firebaseUser) {
+        this.setState({user:firebaseUser})
         
-        console.log(firebaseUser)
-       
+        
         
        
       } else {
@@ -20,20 +19,29 @@ class main extends React.Component {
         navigate('/')
       }
     });
-  
-    
   }
+
+  
   
 
   logout = () => {
     auth.signOut()
     navigate('/')
   }
+  show = () => {
+      console.log(this.state.user)
+  }
 
   render() {
+    let email = 'email'
+    
     return <div>
-        Main
+        
         <button onClick={this.logout}>Logout</button>
+        <button onClick={this.show}>show</button>
+         <p>{this.state.user.email}</p>
+        Main
+
     </div>
   }
 }

@@ -12,9 +12,7 @@ import {navigate} from 'gatsby'
 
 class index extends React.Component {
   
-  state = {
-    user: false
-  }
+ 
  
  
 componentDidMount(){
@@ -28,11 +26,11 @@ componentDidMount(){
     if (firebaseUser) {
       
       
-      this.setState({user:true})
+     
       this.navigateWhenUser()
      
     } else {
-      console.log("no-user");
+     
      
     }
   });
@@ -52,7 +50,7 @@ navigateWhenUser = () =>{
 
       <div>
        
-        {this.state.user? <p>ta</p> : <p>nope</p>}
+        
      <Login/>
       
       </div>
