@@ -1,9 +1,27 @@
-const usersApiUrl = "https://obshab.firebaseio.com/";
+const usersApiUrl = "https://obshab.firebaseio.com/"
 
-export const getUserHabbits = (userId) =>
+export const getUserHabbits = userId =>
   fetch(usersApiUrl + `/users/${userId}/habbits.json`)
     .then(response => response.json())
-    .then(userHabbits =>
-        userHabbits
-    );
+    .then(userHabbits => Object.entries(userHabbits || {}).map(([id,value]) => ({
+        id,
+        ...value
+    })))
 
+export const addHabbit = (name, userId, id) =>
+  fetch(usersApiUrl + `users/${userId}/habbits/.json`, {
+    method: "POST",
+    body: JSON.stringify({
+      name
+      
+    }),
+    
+  })
+
+export const deleteHabbit = (userId, habbitId) =>
+  fetch(usersApiUrl + `users/${userId}/habbits/${habbitId}.json`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
