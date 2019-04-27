@@ -17,15 +17,15 @@ class main extends React.Component {
       if (firebaseUser) {
         this.setState({user:firebaseUser})
         
-      //   fetch("https://obshab.firebaseio.com/users.json")
-      // .then(resp => resp.json())
-      // .then(x => Object.values(x).map(user => {
-      //   if(user.email === firebaseUser.email){
-      //     this.setState({currentUserData: user,
-      //     isLoading:false})
-      //   }
-      // }))
-      this.updateCurrentUser(firebaseUser)
+        fetch("https://obshab.firebaseio.com/users.json")
+      .then(resp => resp.json())
+      .then(x => Object.values(x).map(user => {
+        if(user.email === firebaseUser.email){
+          this.setState({currentUserData: user,
+          isLoading:false})
+        }
+      }))
+      // this.updateCurrentUser(firebaseUser)
      
        
       } else {
@@ -38,29 +38,29 @@ class main extends React.Component {
      
   }
   
-  updateCurrentUser = (firebaseUser) => {
-    dbRef.child("users/").on("child_added", snap => {
+  // updateCurrentUser = (firebaseUser) => {
+  //   dbRef.child("users/").on("child_added", snap => {
       
      
 
-      if(firebaseUser.email === snap.val().email){
-        this.setState({currentUserData: snap.val(),
-        isLoading: false})
-        let ar = []
-        dbRef.child(`users/${snap.val().id}/habbits`).on('child_added', snapi => {
-          let key= snapi.key
-          let value = snapi.val()
-          let obj = {key, value}
+  //     if(firebaseUser.email === snap.val().email){
+  //       this.setState({currentUserData: snap.val(),
+  //       isLoading: false})
+  //       let ar = []
+  //       dbRef.child(`users/${snap.val().id}/habbits`).on('child_added', snapi => {
+  //         let key= snapi.key
+  //         let value = snapi.val()
+  //         let obj = {key, value}
           
-          ar.push(obj)
-          this.setState({userHabbits: ar})
+  //         ar.push(obj)
+  //         this.setState({userHabbits: ar})
          
           
-        })
-      }
-    });
+  //       })
+  //     }
+  //   });
     
-  }
+  // }
   
   
 
