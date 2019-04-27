@@ -8,7 +8,9 @@ class main extends React.Component {
       user:{},
       allUsersData:{},
       currentUserData: {},
-      isLoading: true
+      isLoading: true,
+      userHabbits: []
+      
   }
   componentWillMount(){
     auth.onAuthStateChanged(firebaseUser => {
@@ -23,10 +25,8 @@ class main extends React.Component {
       //     isLoading:false})
       //   }
       // }))
-        
-      dbRef.child('users').on('child_added', function(x){
-        console.log(x.val().email)
-      })
+      this.updateCurrentUser(firebaseUser)
+     
        
       } else {
         console.log("no-user");
@@ -38,7 +38,29 @@ class main extends React.Component {
      
   }
   
+  updateCurrentUser = (firebaseUser) => {
+    dbRef.child("users/").on("child_added", snap => {
+      
+     
 
+      if(firebaseUser.email === snap.val().email){
+        this.setState({currentUserData: snap.val(),
+        isLoading: false})
+        let ar = []
+        dbRef.child(`users/${snap.val().id}/habbits`).on('child_added', snapi => {
+          let key= snapi.key
+          let value = snapi.val()
+          let obj = {key, value}
+          
+          ar.push(obj)
+          this.setState({userHabbits: ar})
+         
+          
+        })
+      }
+    });
+    
+  }
   
   
 
@@ -47,17 +69,25 @@ class main extends React.Component {
     navigate('/')
   }
   show = () => {
-// this.state.allUsersData.map(x => {
-//   if(x.email === this.state.user.email){
-//     console.log(x)
-//   }
-// })      
-console.log(this.state)
+console.log(Object.values(this.state.userHabbits).map(x => x.key))
+   
+    
+    // dbRef.child("uzers/").on("child_added", snap => {
+      
+    //  ar.push(snap.val())
+    //   this.setState({test: ar})
+    //   console.log(this.state.test)
+    // });
+    // dbRef.child('users/').on('child_added', function(x){
+    //   console.log(x.val())
+    //   this.setState({snapUsers: x.val()})
+     
+    // })
 
   }
 
   render() {
-    let email = 'email'
+    
     
     return <div>
         
@@ -66,9 +96,13 @@ console.log(this.state)
          <p>{this.state.user.email}</p>
          <p>{this.state.currentUserData.nick}</p>
          
-         {this.state.isLoading? 'load': <div><MyHabbits currentUserData={this.state.currentUserData}/>
+         
+         
+         {this.state.isLoading? 'load': <div><MyHabbits  state={this.state}/>
            
            </div>}
+
+           
         
  
     </div>

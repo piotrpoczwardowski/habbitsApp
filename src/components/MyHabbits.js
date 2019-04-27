@@ -10,29 +10,39 @@ class MyHabbits extends React.Component {
 handleChange= (e) => {
   this.setState({newHabbit: e.target.value})
 }
-handleSubmit = (e) => {
+handleSubmit = (e, userId) => {
   e.preventDefault()
   
 
-  db.ref(`users/${this.props.currentUserData.id}/habbits/${Date.now()}` ).set(this.state.newHabbit);
-  
-}
+  db.ref(`users/${userId}/habbits/${Date.now()}` ).set(this.state.newHabbit);
 
+}
+deleteHabbit = (habbitId, userId) => {
+  console.log(habbitId, userId)
+  fetch(`https://obshab.firebaseio.com/users/${userId}/habbits/${habbitId}.json`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json"
+    }
+  });
+}
 
 
   render() {
 
     
 
-   let habbits = this.props.currentUserData.habbits
+   let userId = this.props.state.currentUserData.id
+   let userHabbits = this.props.state.userHabbits
+   
     return <div>
       <form action="">
        <input onChange={this.handleChange} type="text"/>
-       <button onClick ={this.handleSubmit}>Add</button>
-       
+       <button onClick ={(e) =>this.handleSubmit(e, userId)}>Add</button>
+      
        </form>
-       
-       {Object.values(habbits).map(x => <p>{x}</p>)}
+       {Object.values(userHabbits).map(habbit => <li key={habbit.key}> {habbit.value} <button onClick={()=>this.deleteHabbit(habbit.key, userId)}>DELETE</button> </li>)}
+      
         
     </div>
   }
