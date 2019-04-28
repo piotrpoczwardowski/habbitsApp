@@ -34,47 +34,42 @@ this.setState({now: now})
     let month = now.getMonth();
     let year = now.getFullYear();
     const monthNames = ['styczeń', 'luty', 'marzec', 'kwiecień', 'maj', 'czerwiec', 'lipiec', 'sierpień', 'wrzesień', 'październik', 'listopad', 'grudzień'];
-    const days = ['Nie','Pon', 'Wto', 'Śro', 'Czw', 'Pią', 'Sob'];
+    const days = ['Pon', 'Wto', 'Śro', 'Czw', 'Pią', 'Sob','Nie'];
     const daysInMonth = new Date(year, month+1, 0).getDate();
   const tempDate = new Date(year,month, 1);
   let firstMonthDay = tempDate.getDay();
- 
-
-let rowsNumber = Math.ceil(daysInMonth / 7)
-let dateCellI = 1
-let rowsArray = []
-let addEmptyCells = false
-for(let i = 0; i<rowsNumber; i++){
-  
-  
-  
-  let cellArray = []
-  for(let j=0; j<7; j++){
-    if(dateCellI-1 === daysInMonth){
-      break;
-    }
-    if(firstMonthDay !==1 && !addEmptyCells){
-      for(let x =0; x<firstMonthDay; x++){
-        let emptyCell = ''
-        cellArray.push(emptyCell)
-        j=firstMonthDay-1
-      }
-      addEmptyCells = true
-    } else{
-      let date = new Date(year,month, dateCellI)
-    let cel = date
-    cellArray.push(cel)
-    dateCellI++
-
-    }
-    
+  if (firstMonthDay === 0) {
+    firstMonthDay = 7;
+}
+const j = daysInMonth + firstMonthDay - 1;
+let allCells = []
+let dateCellsI = 1
+for(let i = 0; i<j; i++){
+  let cell 
+  if(i<firstMonthDay-1){
+    cell= ''
+  } else{
+    cell = new Date(year,month, (dateCellsI));
+    dateCellsI++
   }
-  rowsArray.push(cellArray)
+  
+  
+  allCells.push(cell)
+}
+let chunkArray = []
+let chunk = 7
+for(let i=0; i<allCells.length; i+=chunk){
+  let part = allCells.slice(i, i+chunk)
+  chunkArray.push(part)
 }
 
+
+
+
     return <div>
-{console.log(rowsArray)}
+{console.log(chunkArray)}
     Calendar
+   
     <div className="calendar">
 <div className="date__name">
 <button onClick={this.changeYear}>Prev</button>
@@ -83,12 +78,11 @@ for(let i = 0; i<rowsNumber; i++){
 </div>
 <div className="calendar__contener">
 <table>
+  <thead>
   <tr>{days.map(x => <th>{x}</th> )}</tr>
- 
+  </thead>
   <tbody>
-  {rowsArray.map(x=> <tr>{x.map(y => <td>{y? y.getDate() : ' '}</td>)}</tr> )}
-
-
+  {chunkArray.map(chunk => <tr>{chunk.map(cell => <td>{cell&& cell.getDate()}</td>)}</tr>)}
   </tbody>
 </table>
 </div>
