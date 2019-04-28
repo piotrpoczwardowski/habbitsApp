@@ -1,16 +1,16 @@
+
 import React from "react"
-import { Link } from "gatsby"
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import { auth, dbRef, db } from "../setupFirebase"
 
-const SecondPage = () => (
-  <Layout>
-    <SEO title="Page two" />
-    <h1>Hi from the second page</h1>
-    <p>Welcome to page 2</p>
-    <Link to="/">Go back to the homepage</Link>
-  </Layout>
-)
+class som extends React.Component {
+  state = {}
 
-export default SecondPage
+  render() {
+    return <div>dsad
+      {console.log(this.props.location)}
+    </div>
+  }
+}
+
+export default som
