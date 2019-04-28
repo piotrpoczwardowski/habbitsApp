@@ -27,8 +27,19 @@ now.setMonth(now.getMonth()+ i)
 this.setState({now: now})
 }
 
-handleClick = () => {
-  console.log('dasd')
+handleClick = (e, date) => {
+  this.toggleDone()
+}
+toggleDone = () => {
+  
+  fetch(`https://obshab.firebaseio.com/uzers/hgh.json`, {
+    method: "PUT",
+    body: JSON.stringify({
+      lol: 'dsa'
+      
+    }),
+    
+  })
 }
 
 
@@ -86,7 +97,7 @@ for(let i=0; i<allCells.length; i+=chunk){
   <tr>{days.map(x => <th>{x}</th> )}</tr>
   </thead>
   <tbody>
-  {chunkArray.map(chunk => <tr>{chunk.map(cell => <td onClick={this.handleClick}>{cell&& cell.getDate()}</td>)}</tr>)}
+  {chunkArray.map(chunk => <tr>{chunk.map(cell => <td  onClick={(e) => this.handleClick(e,cell)}>{cell&& cell.getDate()}</td>)}</tr>)}
   </tbody>
 </table>
 </div>
