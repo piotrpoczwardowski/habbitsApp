@@ -8,7 +8,12 @@ class Calendar extends React.Component {
 
   }
   componentWillMount(){
-    this.setState({now: new Date()})
+    let props = this.props.location.state
+    this.setState({now: new Date(),
+    userId: props.userId,
+    habbitId: props.habbit.id
+    })
+    
   }
 changeYear = (e) => {
   
@@ -19,7 +24,7 @@ changeYear = (e) => {
   if(e.target.innerHTML === 'Next'){
     i=1
   }
-  console.log(i)
+  
 let now = this.state.now
 
 
@@ -28,19 +33,20 @@ this.setState({now: now})
 }
 
 handleClick = (e, date) => {
-  this.toggleDone()
+ 
+ this.toggleDone(this.state.userId, this.state.habbitId,date )
 }
-toggleDone = () => {
+toggleDone = (userId, habbitId, date) => 
   
-  fetch(`https://obshab.firebaseio.com/uzers/hgh.json`, {
+  fetch(`https://obshab.firebaseio.com/users/${userId}/habbits/${habbitId}/date/${date}.json`, {
     method: "PUT",
     body: JSON.stringify({
-      lol: 'dsa'
+      isDone: true
       
     }),
     
   })
-}
+
 
 
   render() {
@@ -82,7 +88,7 @@ for(let i=0; i<allCells.length; i+=chunk){
 
 
     return <div>
-{console.log(chunkArray)}
+
     Calendar
    
     <div className="calendar">
