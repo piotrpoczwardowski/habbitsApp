@@ -7,6 +7,7 @@ class MyHabbits extends React.Component {
     userHabbits: [],
     newHabbit: "",
     userId: "",
+    side: 'Positiv'
   }
   getUserHabbits = userId => {
     getUserHabbits(userId).then(habbits =>
@@ -28,7 +29,7 @@ class MyHabbits extends React.Component {
     e.preventDefault()
 
     let id = Date.now()
-    addHabbit(this.state.newHabbit, this.state.userId, id).then(() =>
+    addHabbit(this.state.newHabbit, this.state.userId, id, this.state.side).then(() =>
       this.getUserHabbits(this.state.userId)
     )
   }
@@ -38,16 +39,29 @@ class MyHabbits extends React.Component {
       this.getUserHabbits(this.state.userId)
     )
   }
-
+  selectChange = (e) =>{
+    
+    this.setState({side: e.target.value})
+  }
 
 
   render() {
     let userId = this.props.state.currentUserData.id
     let userHabbits = this.props.state.userHabbits
-
+    var dateObj = new Date();
+    var month = dateObj.getUTCMonth() + 1; //months from 1-12
+    var day = dateObj.getUTCDate() ;
+    var year = dateObj.getUTCFullYear();
+    
+    var newdate = year + "/" + month + "/" + day;
     return (
       <div>
         <form action="">
+        <select onChange={this.selectChange}>
+  <option value="Positiv">Positiv</option>
+  <option value="Negativ">Negativ</option>
+  
+</select>
           <input onChange={this.handleChange} type="text" />
           <button onClick={e => this.handleSubmit(e)}>Add</button>
         </form>
@@ -57,6 +71,8 @@ class MyHabbits extends React.Component {
             <button onClick={() => this.handleDelete(x.id)}>Delete</button>
           </li>
         ))}
+
+       
       </div>
     )
   }

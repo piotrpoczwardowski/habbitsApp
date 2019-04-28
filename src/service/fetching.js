@@ -8,11 +8,12 @@ export const getUserHabbits = userId =>
         ...value
     })))
 
-export const addHabbit = (name, userId, id) =>
+export const addHabbit = (name, userId, id,side) =>
   fetch(usersApiUrl + `users/${userId}/habbits/.json`, {
     method: "POST",
     body: JSON.stringify({
-      name
+      name,
+      side
       
     }),
     
