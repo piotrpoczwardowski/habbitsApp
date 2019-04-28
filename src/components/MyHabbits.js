@@ -68,7 +68,7 @@ class MyHabbits extends React.Component {
           <li key={x.id}>
             {x.name}{" "}
             <button onClick={() => this.handleDelete(x.id)}>Delete</button>
-            <button><Link state={{som:'lol'}} to='/page-2'> Calendar</Link></button>
+            <button><Link state={{som:'lol'}} to='/Calendar'> Calendar</Link></button>
           </li>
         ))}
       </div>

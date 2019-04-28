@@ -27,6 +27,10 @@ now.setMonth(now.getMonth()+ i)
 this.setState({now: now})
 }
 
+handleClick = () => {
+  console.log('dasd')
+}
+
 
   render() {
     let now = this.state.now
@@ -82,7 +86,7 @@ for(let i=0; i<allCells.length; i+=chunk){
   <tr>{days.map(x => <th>{x}</th> )}</tr>
   </thead>
   <tbody>
-  {chunkArray.map(chunk => <tr>{chunk.map(cell => <td>{cell&& cell.getDate()}</td>)}</tr>)}
+  {chunkArray.map(chunk => <tr>{chunk.map(cell => <td onClick={this.handleClick}>{cell&& cell.getDate()}</td>)}</tr>)}
   </tbody>
 </table>
 </div>

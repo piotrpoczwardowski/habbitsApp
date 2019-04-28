@@ -2,7 +2,7 @@ import React from "react"
 import { navigate } from "gatsby"
 import { auth, dbRef, db } from "../setupFirebase"
 import MyHabbits from "../components/MyHabbits"
-import Calendar from '../components/Calendar/Calendar'
+
 
 class main extends React.Component {
   state = {
@@ -61,7 +61,7 @@ class main extends React.Component {
           </div>
         )}
 
-        <Calendar/>
+       
       </div>
     )
   }
