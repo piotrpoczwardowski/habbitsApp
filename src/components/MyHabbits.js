@@ -64,11 +64,12 @@ class MyHabbits extends React.Component {
           <input onChange={this.handleChange} type="text" />
           <button onClick={e => this.handleSubmit(e)}>Add</button>
         </form>
-        {this.state.userHabbits.map(x => (
-          <li key={x.id}>
-            {x.name}
-            <button onClick={() => this.handleDelete(x.id)}>Delete</button>
-            <button><Link state={{userId:this.state.userId, habbit: x }} to='/Calendar'> Calendar</Link></button>
+        {this.state.userHabbits.map(habbit => (
+          <li key={habbit.id}>
+            {habbit.name}
+            <button onClick={() => this.handleDelete(habbit.id)}>Delete</button>
+            <button><Link state={{userId:this.state.userId,
+            habbit: habbit }} to='/Calendar'> Calendar</Link></button>
           </li>
         ))}
       </div>

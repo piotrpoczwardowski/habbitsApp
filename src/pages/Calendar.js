@@ -5,30 +5,25 @@ class Calendar extends React.Component {
   state = {
     now: new Date(),
     userId: "",
-    habbitName: "",
+    habbit: {}
+    
   }
   componentWillMount() {
     let props = this.props.location.state
-    this.setState({
-      now: new Date(),
-      userId: props.userId,
-      habbitName: props.habbit.name,
-      habbitDate: props.habbit.date
-    })
-    console.log(props)
+    this.setState({userId: props.userId,
+    habbit: props.habbit})
+   
   }
-  getUserHabbits = (userId, habbitId) => {
-    fetch(`https://obshab.firebaseio.com/users/${userId}/habbits/${habbitId}/date.json`)
-    .then(response => response.json())
-    .then(userHabbits => Object.entries(userHabbits || {}).map(([id,isDone]) => 
-        ({id,...isDone})
-    )).then( x=>{
-      console.log(x)
-      this.setState({habbit: x})
-    }
-
-    )
+  getHabbit = () => {
+    fetch(`https://obshab.firebaseio.com/users/${this.state.userId}/habbits/${this.state.habbit.id}.json`)
+  .then(response => response.json())
+  .then(userHabbits => userHabbits).then(x => {
+    x.id = this.state.habbit.id
+    console.log(x)
+    this.setState({habbit:x})
+  })
   }
+ 
   changeYear = e => {
     let i = 0
     if (e.target.innerHTML === "Prev") {
@@ -47,7 +42,8 @@ class Calendar extends React.Component {
 
   handleClick = (e, cellId) => {
     
-    this.toggleDone(this.state.userId, this.state.habbit.id, cellId).then(()=> this.getUserHabbits(this.state.userId, this.state.habbit.id))
+    this.toggleDone(this.state.userId, this.state.habbit.id, cellId)
+    .then(()=> this.getHabbit())
   }
   toggleDone = (userId, habbitId, cellId) =>
   
@@ -56,6 +52,7 @@ class Calendar extends React.Component {
       {
         method: "PUT",
         body: JSON.stringify({
+          
           isDone: true,
         }),
       }
@@ -111,15 +108,19 @@ class Calendar extends React.Component {
       let part = allCells.slice(i, i + chunk)
       chunkArray.push(part)
     }
-
-    
+    let habbitDate =  Object.entries(this.state.habbit.date || {}).map(([id, isDone])=> ({
+      id,
+      ...isDone
+    }))
+   
 
     return (
       <div>
-        {console.log(this.state.habbitDate)}
+        <button onClick={() =>this.getHabbit()}>CLICK</button>
         <div className="calendar">
           <h1>Calendar</h1>
-          <h3>{this.state.habbit.name}</h3>
+       {this.state.habbit.name}
+       {console.log(habbitDate)}
           <div className="date__name">
             <button onClick={this.changeYear}>Prev</button>
             <span>
@@ -141,7 +142,7 @@ class Calendar extends React.Component {
                   <tr>
                     {chunk.map(cell => (
                       <td onClick={e => this.handleClick(e, cell.date)}
-                     
+                     className={habbitDate.some(habbit => habbit.id === `${cell.date}`)?'active': undefined}
                       >
                         {cell && cell.date.getDate()}
                     
