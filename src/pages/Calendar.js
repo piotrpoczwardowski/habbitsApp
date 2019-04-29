@@ -130,7 +130,7 @@ class Calendar extends React.Component {
                   <tr>
                     {chunk.map(cell => (
                       <td onClick={e => this.handleClick(e, cell.date)}
-                      className={habbitDates.some(x => x.id === `${cell.date}`)&& 'active'}
+                      className={habbitDates.some(x => x.id === `${cell.date}`)? 'active': undefined}
                       >
                         {cell && cell.date.getDate()}
                      {console.log(habbitDates.some(x => x.id === `${cell.date}`))}
