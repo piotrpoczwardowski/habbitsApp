@@ -1,20 +1,33 @@
 import React from "react"
-
+import { getUserHabbits, addHabbit, deleteHabbit } from "../service/fetching"
 import "./Calendar.css"
 class Calendar extends React.Component {
   state = {
     now: new Date(),
     userId: "",
-    habbit: "",
+    habbitName: "",
   }
   componentWillMount() {
     let props = this.props.location.state
     this.setState({
       now: new Date(),
       userId: props.userId,
-      habbit: props.habbit,
+      habbitName: props.habbit.name,
+      habbitDate: props.habbit.date
     })
     console.log(props)
+  }
+  getUserHabbits = (userId, habbitId) => {
+    fetch(`https://obshab.firebaseio.com/users/${userId}/habbits/${habbitId}/date.json`)
+    .then(response => response.json())
+    .then(userHabbits => Object.entries(userHabbits || {}).map(([id,isDone]) => 
+        ({id,...isDone})
+    )).then( x=>{
+      console.log(x)
+      this.setState({habbit: x})
+    }
+
+    )
   }
   changeYear = e => {
     let i = 0
@@ -29,11 +42,12 @@ class Calendar extends React.Component {
 
     now.setMonth(now.getMonth() + i)
     this.setState({ now: now })
+    console.log(this.state)
   }
 
   handleClick = (e, cellId) => {
-    console.log(cellId)
-    this.toggleDone(this.state.userId, this.state.habbit.id, cellId)
+    
+    this.toggleDone(this.state.userId, this.state.habbit.id, cellId).then(()=> this.getUserHabbits(this.state.userId, this.state.habbit.id))
   }
   toggleDone = (userId, habbitId, cellId) =>
   
@@ -98,14 +112,11 @@ class Calendar extends React.Component {
       chunkArray.push(part)
     }
 
-    let habbitDates = Object.entries(this.state.habbit.date).map(([id, isDone]) => ({
-      id,
-      ...isDone
-    }) )
+    
 
     return (
       <div>
-        
+        {console.log(this.state.habbitDate)}
         <div className="calendar">
           <h1>Calendar</h1>
           <h3>{this.state.habbit.name}</h3>
@@ -130,10 +141,10 @@ class Calendar extends React.Component {
                   <tr>
                     {chunk.map(cell => (
                       <td onClick={e => this.handleClick(e, cell.date)}
-                      className={habbitDates.some(x => x.id === `${cell.date}`)? 'active': undefined}
+                     
                       >
                         {cell && cell.date.getDate()}
-                     {console.log(habbitDates.some(x => x.id === `${cell.date}`))}
+                    
                       </td>
                     ))}
                   </tr>
