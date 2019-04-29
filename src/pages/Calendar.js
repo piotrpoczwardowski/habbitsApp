@@ -41,11 +41,11 @@ class Calendar extends React.Component {
   }
 
   handleClick = (e, cellId) => {
-    
-    this.toggleDone(this.state.userId, this.state.habbit.id, cellId)
+    let isDone = e.target.classList.contains('done')
+    this.toggleDone(this.state.userId, this.state.habbit.id, cellId, isDone)
     .then(()=> this.getHabbit())
   }
-  toggleDone = (userId, habbitId, cellId) =>
+  toggleDone = (userId, habbitId, cellId, isDone) =>
   
     fetch(
       `https://obshab.firebaseio.com/users/${userId}/habbits/${habbitId}/date/${cellId}.json`,
@@ -53,7 +53,7 @@ class Calendar extends React.Component {
         method: "PUT",
         body: JSON.stringify({
           
-          isDone: true,
+          isDone: !isDone,
         }),
       }
     )
@@ -142,7 +142,7 @@ class Calendar extends React.Component {
                   <tr>
                     {chunk.map(cell => (
                       <td onClick={e => this.handleClick(e, cell.date)}
-                     className={habbitDate.some(habbit => habbit.id === `${cell.date}`)?'active': undefined}
+                     className={habbitDate.some(habbit => habbit.id === `${cell.date}` && habbit.isDone)?'done': undefined}
                       >
                         {cell && cell.date.getDate()}
                     
