@@ -48,12 +48,7 @@ class MyHabbits extends React.Component {
   render() {
     let userId = this.props.state.currentUserData.id
     let userHabbits = this.props.state.userHabbits
-    var dateObj = new Date()
-    var month = dateObj.getUTCMonth() + 1 //months from 1-12
-    var day = dateObj.getUTCDate()
-    var year = dateObj.getUTCFullYear()
-
-    var newdate = year + "/" + month + "/" + day
+   
     return (
       <div>
         <form action="">
@@ -68,8 +63,8 @@ class MyHabbits extends React.Component {
           <li key={habbit.id}>
             {habbit.name}
             <button onClick={() => this.handleDelete(habbit.id)}>X</button>
-            {/* <button><Link state={{userId:this.state.userId,
-            habbit: habbit }} to='/Calendar'> Calendar</Link></button> */}
+            <button><Link state={{userId:this.state.userId,
+            habbit: habbit }} to='/Calendar'> Calendar</Link></button>
           </li>
         ))}
       </div>
