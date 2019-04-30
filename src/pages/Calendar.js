@@ -37,7 +37,7 @@ class Calendar extends React.Component {
 
     now.setMonth(now.getMonth() + i)
     this.setState({ now: now })
-    console.log(this.state)
+    console.log(this.state.now)
   }
 
   handleClick = (e, cellId) => {

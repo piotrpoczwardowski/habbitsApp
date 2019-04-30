@@ -2,7 +2,7 @@ import React from "react"
 import { getUserHabbits, addHabbit, deleteHabbit } from "../service/fetching"
 import { auth, dbRef, db } from "../setupFirebase"
 import {Link} from 'gatsby'
-class MyHabbits extends React.Component {
+class EditHabbits extends React.Component {
   state = {
     userHabbits: [],
     newHabbit: "",
@@ -72,4 +72,4 @@ class MyHabbits extends React.Component {
   }
 }
 
-export default MyHabbits
+export default EditHabbits
