@@ -67,9 +67,9 @@ class MyHabbits extends React.Component {
         {this.state.userHabbits.map(habbit => (
           <li key={habbit.id}>
             {habbit.name}
-            <button onClick={() => this.handleDelete(habbit.id)}>Delete</button>
-            <button><Link state={{userId:this.state.userId,
-            habbit: habbit }} to='/Calendar'> Calendar</Link></button>
+            <button onClick={() => this.handleDelete(habbit.id)}>X</button>
+            {/* <button><Link state={{userId:this.state.userId,
+            habbit: habbit }} to='/Calendar'> Calendar</Link></button> */}
           </li>
         ))}
       </div>

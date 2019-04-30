@@ -49,7 +49,7 @@ class main extends React.Component {
     return (
       <div>
         <button onClick={this.logout}>Logout</button>
-        <button onClick={this.show}>show</button>
+       
         <p>{this.state.user.email}</p>
         <p>{this.state.currentUserData.nick}</p>
 
