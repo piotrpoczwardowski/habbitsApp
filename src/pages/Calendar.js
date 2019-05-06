@@ -120,7 +120,7 @@ class Calendar extends React.Component {
         <div className="calendar">
           <h1>Calendar</h1>
        {this.state.habbit.name}
-       {console.log(habbitDate)}
+     
           <div className="date__name">
             <button onClick={this.changeYear}>Prev</button>
             <span>
@@ -145,7 +145,7 @@ class Calendar extends React.Component {
                      className={habbitDate.some(habbit => habbit.id === `${cell.date}` && habbit.isDone)?'done': undefined}
                       >
                         {cell && cell.date.getDate()}
-                    
+                  {console.log(habbitDate.some(habbit => habbit.id === `${cell.date}`))}
                       </td>
                     ))}
                   </tr>

@@ -1,13 +1,12 @@
-
 import React from "react"
 import { getUserHabbits, addHabbit, deleteHabbit } from "../service/fetching"
 import { auth, dbRef, db } from "../setupFirebase"
-import { totalmem } from "os";
+import '../components/Habbits.css'
 
 class Habbits extends React.Component {
   state = {
-      userId: '',
-      userHabbits: []
+    userId: "",
+    userHabbits: [],
   }
   getUserHabbits = userId => {
     getUserHabbits(userId).then(habbits =>
@@ -21,50 +20,70 @@ class Habbits extends React.Component {
 
     this.getUserHabbits(userId)
   }
+  // findHabbit = (habbit, day) => {
+  //   let habbitDate =  Object.entries(habbit.date || {}).map(([id, isDone])=> ({
+  //     id,
+  //     ...isDone
+  //   }))
+  //   console.log(habbitDate.some(habbit => habbit.id === `${day}`))
+  // }
+  
 
   render() {
-      let now = new Date()
-      let sevenDays = []
-      const monthNames = [
-        "styczeń",
-        "luty",
-        "marzec",
-        "kwiecień",
-        "maj",
-        "czerwiec",
-        "lipiec",
-        "sierpień",
-        "wrzesień",
-        "październik",
-        "listopad",
-        "grudzień",
-      ]
-    for(let i = -3; i<4; i++){
-        let day = new Date()
-        day.setDate(day.getDate() + i)
-        sevenDays.push(day)
+      
+  
+    let sevenDays = []
+    const monthNames = [
+      "styczeń",
+      "luty",
+      "marzec",
+      "kwiecień",
+      "maj",
+      "czerwiec",
+      "lipiec",
+      "sierpień",
+      "wrzesień",
+      "październik",
+      "listopad",
+      "grudzień",
+    ]
+    for (let i = -3; i < 4; i++) {
+      let day = {date:new Date()}
+      day.date.setDate(day.date.getDate() + i)
+      sevenDays.push(day)
     }
-    return <div>
-
+    
+    return (
+      <div>
         Habbitsaaaaaaaaaaaaaaaa
-        {this.state.userHabbits.map(habbit => (
-          <li key={habbit.id}>
-            {habbit.name}
-            
-          </li>
-        ))}
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    {sevenDays.map(day => <th>{day.getDate()} {monthNames[day.getMonth()]}</th>)}
-                </tr>
-            </thead>
-            <tbody>
-                
-            </tbody>
-        </table>
-    </div>
+        table
+        {/* <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              {sevenDays.map(day => (
+                <th>
+                  {day.getDate()} {monthNames[day.getMonth()]}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.userHabbits.map(habbit => (
+              <tr key={habbit.id}>
+                <td>{habbit.name}</td>
+                {sevenDays.map(day => (
+                  <td>
+                     {this.findHabbit(habbit, day)}
+                    {day.getDate()} {monthNames[day.getMonth()]}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table> */}
+      </div>
+    )
   }
 }
 
