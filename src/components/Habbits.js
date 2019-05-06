@@ -20,13 +20,18 @@ class Habbits extends React.Component {
 
     this.getUserHabbits(userId)
   }
-  // findHabbit = (habbit, day) => {
-  //   let habbitDate =  Object.entries(habbit.date || {}).map(([id, isDone])=> ({
-  //     id,
-  //     ...isDone
-  //   }))
-  //   console.log(habbitDate.some(habbit => habbit.id === `${day}`))
-  // }
+  findHabbit = (habbit, day) => {
+    let habbitDate =  Object.entries(habbit.date || {}).map(([id, isDone])=> ({
+      id,
+      ...isDone
+    }))
+    return (habbitDate.some(habbit => habbit.id === `${day.date}`&& habbit.isDone))
+  }
+  handleClick = (e, cellId) => {
+    let isDone = e.target.classList.contains('done')
+    this.toggleDone(this.state.userId, this.state.habbit.id, cellId, isDone)
+    .then(()=> this.getHabbit())
+  }
   
 
   render() {
@@ -50,13 +55,38 @@ class Habbits extends React.Component {
     for (let i = -3; i < 4; i++) {
       let day = {date:new Date()}
       day.date.setDate(day.date.getDate() + i)
+      day.date.setHours(0,0,0,0)
       sevenDays.push(day)
     }
     
     return (
       <div>
         Habbitsaaaaaaaaaaaaaaaa
-        table
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              {sevenDays.map(day => (
+                <th>
+                  {day.date.getDate()} {monthNames[day.date.getMonth()]}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.userHabbits.map(habbit => (
+              <tr key={habbit.id}>
+              <td>{habbit.name}</td>
+              {sevenDays.map(day => (
+                <td onClick={e => this.handleClick(e, cell.date)} className={this.findHabbit(habbit, day) ? 'done': undefined}>
+                  {day.date.getDate()}  {monthNames[day.date.getMonth()]}
+                 
+                </td>
+              ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
         {/* <table>
           <thead>
             <tr>

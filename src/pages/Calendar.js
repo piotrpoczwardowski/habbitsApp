@@ -145,7 +145,7 @@ class Calendar extends React.Component {
                      className={habbitDate.some(habbit => habbit.id === `${cell.date}` && habbit.isDone)?'done': undefined}
                       >
                         {cell && cell.date.getDate()}
-                  {console.log(habbitDate.some(habbit => habbit.id === `${cell.date}`))}
+                  {console.log(habbitDate.map(x => x.id === `${cell.date}`))}
                       </td>
                     ))}
                   </tr>
