@@ -26,9 +26,13 @@ class Habbits extends React.Component {
       id,
       ...isDone,
     }))
-    return habbitDate.some(
+    let isDone = habbitDate.some(
       habbit => habbit.id === `${day.date}` && habbit.isDone
     )
+ let color = undefined
+ 
+
+    return isDone
   }
   handleClick = (e, cellId, habbitId) => {
     let isDone = e.target.classList.contains("done")
@@ -93,8 +97,7 @@ class Habbits extends React.Component {
                   <td
                     onClick={e => this.handleClick(e, day.date, habbit.id)}
                     className={
-                      this.findHabbit(habbit, day) ? "done" : undefined
-                    }
+                      this.findHabbit(habbit, day)}
                   >
                     {day.date.getDate()} {monthNames[day.date.getMonth()]}
                   </td>
@@ -103,31 +106,7 @@ class Habbits extends React.Component {
             ))}
           </tbody>
         </table>
-        {/* <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              {sevenDays.map(day => (
-                <th>
-                  {day.getDate()} {monthNames[day.getMonth()]}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.userHabbits.map(habbit => (
-              <tr key={habbit.id}>
-                <td>{habbit.name}</td>
-                {sevenDays.map(day => (
-                  <td>
-                     {this.findHabbit(habbit, day)}
-                    {day.getDate()} {monthNames[day.getMonth()]}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table> */}
+       
       </div>
     )
   }

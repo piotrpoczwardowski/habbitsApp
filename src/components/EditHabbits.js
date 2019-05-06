@@ -7,7 +7,7 @@ class EditHabbits extends React.Component {
     userHabbits: [],
     newHabbit: "",
     userId: "",
-    side: "Positiv",
+    isPositive: true,
   }
   getUserHabbits = userId => {
     getUserHabbits(userId).then(habbits =>
@@ -33,7 +33,7 @@ class EditHabbits extends React.Component {
       this.state.newHabbit,
       this.state.userId,
       id,
-      this.state.side
+      this.state.isPositive
     ).then(() => this.getUserHabbits(this.state.userId))
   }
   handleDelete = habbitId => {
@@ -42,7 +42,8 @@ class EditHabbits extends React.Component {
     )
   }
   selectChange = e => {
-    this.setState({ side: e.target.value })
+    this.setState({ isPositive: e.target.value })
+    console.log(e.target.value)
   }
 
   render() {
@@ -53,8 +54,8 @@ class EditHabbits extends React.Component {
       <div>
         <form action="">
           <select onChange={this.selectChange}>
-            <option value="Positiv">Positiv</option>
-            <option value="Negativ">Negativ</option>
+            <option value={true}>Positiv</option>
+            <option value={false}>Negativ</option>
           </select>
           <input onChange={this.handleChange} type="text" />
           <button onClick={e => this.handleSubmit(e)}>Add</button>
