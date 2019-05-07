@@ -52,18 +52,18 @@
 }
 
 .sign__form input {
-  width: 30%;
+  width: 300px;
 }
 
 .sign__btns {
-  width: 30%;
+  width: 300px;
   margin: 50px auto 0;
   display: flex;
   justify-content: space-around;
 }
 
 .sign__btn {
-  width: 40%;
+  width: 140px;
   display: flex;
   justify-content: center;
 }
@@ -73,5 +73,19 @@
 }
 
 .sign__button button {
-  width: 30%;
+  width: 300px;
+}
+
+.main {
+  margin: 15px auto;
+  width: 95%;
+}
+
+.btn__logout {
+  float: right;
+}
+
+.navigation .btn {
+  width: 12%;
+  min-width: 150px;
 }
