@@ -106,8 +106,9 @@ class Habbits extends React.Component {
                       this.findHabbit(habbit, day) ? "done" : undefined
                     }
                   >
+                 
                    
-                    <span onClick={this.click}
+                    <span 
                       className={
                         this.findHabbit(habbit, day)
                           ? habbit.isPositive === "true"
@@ -116,6 +117,7 @@ class Habbits extends React.Component {
                           : undefined
                       }
                     />
+                    
                   </td>
                 ))}
               </tr>
