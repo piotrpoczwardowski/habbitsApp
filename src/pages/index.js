@@ -9,6 +9,8 @@ import { auth, dbRef, db } from "../setupFirebase"
 import Login from "../components/Login"
 import { navigate } from "gatsby"
 import './index.scss'
+import AniLink from "gatsby-plugin-transition-link/AniLink";
+import TransitionLink from 'gatsby-plugin-transition-link'
 
 class index extends React.Component {
   componentDidMount() {
@@ -27,7 +29,22 @@ class index extends React.Component {
   render() {
     return (
       <div>
+        <AniLink cover to="page-2" bg="#663399">
+  Go to Page 3
+</AniLink>
         <Login />
+        <TransitionLink 
+  to="/page-2"
+  exit={{
+    trigger: ({ exit, node }) => this.interestingExitAnimation(exit, node),
+    length: 1
+  }}
+  entry={{
+    delay: 0.6
+  }}
+>
+  Go to page 2
+</TransitionLink>
       </div>
     )
   }

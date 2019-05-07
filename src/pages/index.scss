@@ -2,6 +2,9 @@
     margin: 0;
     padding: 0;
 }
+body{
+   
+}
 .title{
     font-size: 50px;
     color: rgb(78, 13, 138);
@@ -41,10 +44,10 @@
 
 .sign{
     text-align: center;
- 
+ height: 300px;
     width: 90%;
     margin: 0 auto;
-   
+  
 }
 
 .sign__form{
@@ -58,7 +61,7 @@
 }
 .sign__btns{
     width: 30%;
-    margin: 0 auto;
+    margin: 50px auto 0;
     display: flex;
     justify-content: space-around;
 }
