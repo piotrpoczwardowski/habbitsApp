@@ -36,7 +36,9 @@ class signUp extends React.Component {
         })
         
     };
-  
+  componentWillUnmount(){
+    console.log('by')
+  }
     addUserToDatabase = () => {
       let newUser = {
         

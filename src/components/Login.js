@@ -28,7 +28,7 @@ class Login extends React.Component {
     return (
       <div className="login">
       
-       {this.state.open === 0 &&  <Flip left>
+       {this.state.open === 0 &&  <Flip  left>
         <SignUp />
           </Flip>}
         {this.state.open === 1 && <Flip right >
