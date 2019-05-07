@@ -54,11 +54,11 @@ class signUp extends React.Component {
   
     handleChange = e => {
       this.setState({ [e.target.id]: e.target.value });
-      console.log(this.state)
+      
     };
   
     addUserData = () => {
-      console.log("ok");
+      
       db.ref("pika-users/" + Date.now()).set({
         userId: Date.now(),
         nick: this.state.nick,
@@ -74,41 +74,38 @@ class signUp extends React.Component {
       
   
       return (
-        <div className="SignUp">
-          <div className="SignUp-head">
-            <p>Sign up</p>
+        <div className="sign">
+          <div className="title">
+          Sign Up
           </div>
-          <div className="SignUp-form">
-            <form>
+          
+            <form className="sign__form">
               <input
-                style={{ margin: 8 }}
-                className="acces-input"
+                className="inp"
                 label="Nick"
                 placeholder='Name'
                 id="nick"
                 onChange={this.handleChange}
               />
               <input
-                style={{ margin: 8 }}
-                className="acces-input"
+                className="inp"
                 label="Email"
                 placeholder='Email'
                 id="email"
                 onChange={this.handleChange}
               />
               <input
-                style={{ margin: 8 }}
-                className="acces-input"
+                className="inp"
                 label="Password"
                 placeholder='Password'
                 id="password"
                 onChange={this.handleChange}
               />
-              <div className="SignUp-holder-button">
-                <button onClick={this.handleSubmit} text="Signup">Register</button>
+              <div className="sign__button">
+                <button className='btn' onClick={this.handleSubmit} text="Signup">Register</button>
               </div>
             </form>
-          </div>
+         
         </div>
     )
   }

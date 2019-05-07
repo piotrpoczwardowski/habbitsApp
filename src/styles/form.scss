@@ -1,0 +1,25 @@
+.signIn{
+    text-align: center;
+ 
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+.signIn__form{
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+}
+.signIn__form input{
+    width: 30%;
+    
+}
+
+.signIn__button{
+    margin: 20px 0 0;
+    button{
+        width: 30%;
+       
+    }
+}
