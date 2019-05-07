@@ -1,3 +1,13 @@
+.circle{
+    background: blue;
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    border-radius: 50%;
+}
+.done{
+    background: white;
+}
 .green{
     background: green;
 }

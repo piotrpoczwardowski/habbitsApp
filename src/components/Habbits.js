@@ -29,8 +29,8 @@ class Habbits extends React.Component {
     let isDone = habbitDate.some(
       habbit => habbit.id === `${day.date}` && habbit.isDone
     )
- let color = undefined
  
+
 
     return isDone
   }
@@ -77,7 +77,7 @@ class Habbits extends React.Component {
 
     return (
       <div>
-        Habbitsaaaaaaaaaaaaaaaa
+       
         <table>
           <thead>
             <tr>
@@ -97,9 +97,10 @@ class Habbits extends React.Component {
                   <td
                     onClick={e => this.handleClick(e, day.date, habbit.id)}
                     className={
-                      this.findHabbit(habbit, day)}
+                      this.findHabbit(habbit, day)? 'done' : undefined}
                   >
                     {day.date.getDate()} {monthNames[day.date.getMonth()]}
+                    <span className={this.findHabbit(habbit, day)? habbit.isPositive === 'true'? 'circle green' : 'circle red' : undefined}></span>
                   </td>
                 ))}
               </tr>

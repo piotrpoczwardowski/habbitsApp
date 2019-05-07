@@ -7,7 +7,7 @@ class EditHabbits extends React.Component {
     userHabbits: [],
     newHabbit: "",
     userId: "",
-    isPositive: true,
+    isPositive: 'true',
   }
   getUserHabbits = userId => {
     getUserHabbits(userId).then(habbits =>
