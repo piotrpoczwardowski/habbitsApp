@@ -8,6 +8,7 @@ import SEO from "../components/seo"
 import { auth, dbRef, db } from "../setupFirebase"
 import Login from "../components/Login"
 import { navigate } from "gatsby"
+import './index.scss'
 
 class index extends React.Component {
   componentDidMount() {
