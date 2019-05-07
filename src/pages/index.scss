@@ -1,3 +1,5 @@
+$gradient : linear-gradient(rgb(175, 74, 175), rgb(36, 13, 138));
+$primary: rgb(78, 13, 138);
 *{
     margin: 0;
     padding: 0;
@@ -7,18 +9,19 @@ body{
 }
 .title{
     font-size: 50px;
-    color: rgb(78, 13, 138);
+    color: $primary;
     font-weight: bold;
 }
 
 .btn{
     
-        background: linear-gradient(rgb(175, 74, 175), rgb(36, 13, 138));
+        background: $gradient;
         border: none;
         padding: 8px;
         border-radius: 10px;
         color: white;
         outline: none;
+        font-weight: bold;
 }
 
 .inp{
@@ -93,5 +96,54 @@ body{
     .btn{
         width: 12%;
         min-width: 150px;
+    }
+}
+
+//Habbits
+
+.circle{
+    background: blue;
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    border-radius: 50%;
+    
+}
+
+.green{
+  background: green;
+    background-position: center;
+    background-size: cover;
+}
+.red{
+   background: red;
+    background-position: center;
+    background-size: cover;
+}
+
+table, th, td {
+   border: 0px;
+  }
+
+table{
+   
+    thead{
+        background: $gradient;
+        color: white;
+        th{
+            text-align: center;
+            border: none;
+            
+        }
+    }
+
+    tbody{
+        tr:nth-child(even) {background-color: #cecece;}
+        td{
+           
+            padding: 10px 0;
+            text-align: center;
+            
+        }
     }
 }

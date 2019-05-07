@@ -2,6 +2,7 @@ import React from "react"
 import { getUserHabbits, addHabbit, deleteHabbit } from "../service/fetching"
 import { auth, dbRef, db } from "../setupFirebase"
 import "../components/Habbits.css"
+import Bounce from 'react-reveal/Bounce';
 
 class Habbits extends React.Component {
   state = {
@@ -9,10 +10,10 @@ class Habbits extends React.Component {
     userHabbits: [],
   }
   getUserHabbits = userId => {
-    getUserHabbits(userId).then(habbits =>{
+    getUserHabbits(userId).then(habbits => {
       this.setState({ userHabbits: habbits })
-    console.log(habbits)}
-    )
+     
+    })
   }
 
   componentWillMount() {
@@ -29,13 +30,12 @@ class Habbits extends React.Component {
     let isDone = habbitDate.some(
       habbit => habbit.id === `${day.date}` && habbit.isDone
     )
- 
-
 
     return isDone
   }
   handleClick = (e, cellId, habbitId) => {
-    let isDone = e.target.classList.contains("done")
+    console.log()
+    let isDone = e.currentTarget.classList.contains("done")  
     this.toggleDone(this.state.userId, habbitId, cellId, isDone).then(() =>
       this.getUserHabbits(this.state.userId)
     )
@@ -52,7 +52,14 @@ class Habbits extends React.Component {
       }
     )
 
+    // click = (e) => {
+    //   console.log(e)
+    // }
+
   render() {
+    let now = new Date()
+    let currentDay = now.getDate()
+    let currentMonth = now.getMonth()
     let sevenDays = []
     const monthNames = [
       "styczeń",
@@ -68,7 +75,7 @@ class Habbits extends React.Component {
       "listopad",
       "grudzień",
     ]
-    for (let i = -3; i < 4; i++) {
+    for (let i = -2; i < 3; i++) {
       let day = { date: new Date() }
       day.date.setDate(day.date.getDate() + i)
       day.date.setHours(0, 0, 0, 0)
@@ -77,13 +84,12 @@ class Habbits extends React.Component {
 
     return (
       <div>
-       
         <table>
           <thead>
             <tr>
               <th>Name</th>
               {sevenDays.map(day => (
-                <th>
+                <th className={currentDay === day.date.getDate() && 'today'}>
                   {day.date.getDate()} {monthNames[day.date.getMonth()]}
                 </th>
               ))}
@@ -97,17 +103,25 @@ class Habbits extends React.Component {
                   <td
                     onClick={e => this.handleClick(e, day.date, habbit.id)}
                     className={
-                      this.findHabbit(habbit, day)? 'done' : undefined}
+                      this.findHabbit(habbit, day) ? "done" : undefined
+                    }
                   >
-                    {day.date.getDate()} {monthNames[day.date.getMonth()]}
-                    <span className={this.findHabbit(habbit, day)? habbit.isPositive === 'true'? 'circle green' : 'circle red' : undefined}></span>
+                   
+                    <span onClick={this.click}
+                      className={
+                        this.findHabbit(habbit, day)
+                          ? habbit.isPositive === "true"
+                            ? "circle green"
+                            : "circle red"
+                          : undefined
+                      }
+                    />
                   </td>
                 ))}
               </tr>
             ))}
           </tbody>
         </table>
-       
       </div>
     )
   }

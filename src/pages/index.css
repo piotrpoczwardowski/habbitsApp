@@ -16,6 +16,7 @@
   border-radius: 10px;
   color: white;
   outline: none;
+  font-weight: bold;
 }
 
 .inp {
@@ -88,4 +89,47 @@
 .navigation .btn {
   width: 12%;
   min-width: 150px;
+}
+
+.circle {
+  background: blue;
+  width: 25px;
+  height: 25px;
+  display: inline-block;
+  border-radius: 50%;
+}
+
+.green {
+  background: green;
+  background-position: center;
+  background-size: cover;
+}
+
+.red {
+  background: red;
+  background-position: center;
+  background-size: cover;
+}
+
+table, th, td {
+  border: 0px;
+}
+
+table thead {
+  background: linear-gradient(#af4aaf, #240d8a);
+  color: white;
+}
+
+table thead th {
+  text-align: center;
+  border: none;
+}
+
+table tbody tr:nth-child(even) {
+  background-color: #cecece;
+}
+
+table tbody td {
+  padding: 10px 0;
+  text-align: center;
 }
