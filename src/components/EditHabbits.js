@@ -70,8 +70,7 @@ class EditHabbits extends React.Component {
               <div className="habbit">
                 <div className="habbit__name">{habbit.name}</div>
                 <div className="habbit__calendar">
-                  <button className="btn2"><Link state={{userId:this.state.userId,
-                habbit: habbit }} to='/Calendar'> Calendar</Link></button>
+                  <button onClick={(e) =>this.props.changePage(e,habbit)} className="btn2">Calendar</button>
                 </div>
                 <div className="habbit__delete">
                   <button

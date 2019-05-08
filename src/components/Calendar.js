@@ -1,6 +1,6 @@
 import React from "react"
 import { getUserHabbits, addHabbit, deleteHabbit } from "../service/fetching"
-import "./Calendar.css"
+
 
 import { navigate } from "gatsby"
 class Calendar extends React.Component {
@@ -11,9 +11,9 @@ class Calendar extends React.Component {
     
   }
   componentWillMount() {
-    let props = this.props.location.state
-    this.setState({userId: props.userId,
-    habbit: props.habbit})
+    
+    this.setState({userId: this.props.userId,
+    habbit: this.props.habbit})
    
   }
   getHabbit = () => {
@@ -124,7 +124,7 @@ class Calendar extends React.Component {
       <div>
       
         <div className="calendar">
-        <button onClick={this.back} className="btn">BACK</button>
+       
           <h1 className='title'>{this.state.habbit.name}</h1>
        
      

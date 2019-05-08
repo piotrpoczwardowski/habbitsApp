@@ -4,6 +4,7 @@ import { auth, dbRef, db } from "../setupFirebase"
 import EditHabbits from "../components/EditHabbits"
 import Habbits from "../components/Habbits"
 import Fade from 'react-reveal/Fade';
+import Calendar from '../components/Calendar'
 
 class main extends React.Component {
   state = {
@@ -13,6 +14,7 @@ class main extends React.Component {
     isLoading: true,
     userHabbits: [],
     component: "Habbits",
+    propHabbit: ''
   }
   componentWillMount() {
     auth.onAuthStateChanged(firebaseUser => {
@@ -43,14 +45,16 @@ class main extends React.Component {
   show = () => {
     console.log(Object.values(this.state.userHabbits).map(x => x.key))
   }
-  changePage = e => {
-    this.setState({ component: e.target.innerHTML })
+  changePage = (e, habbit) => {
+    this.setState({ component: e.target.innerHTML, propHabbit: habbit  })
+    
   }
 
   render() {
     let components = {
       Habbits: <Fade><Habbits state={this.state} /></Fade>,
-      EditHabbits: <EditHabbits state={this.state} />,
+      EditHabbits: <EditHabbits changePage={this.changePage} state={this.state} />,
+      Calendar: <Calendar userId={this.state.currentUserData.id} habbit={this.state.propHabbit}/>
     }
     return (
       <div className='main'>
@@ -61,6 +65,7 @@ class main extends React.Component {
             Logout
           </button>
         </div>
+        
 
         <p>{this.state.user.email}</p>
 
