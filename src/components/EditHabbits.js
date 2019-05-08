@@ -2,6 +2,7 @@ import React from "react"
 import { getUserHabbits, addHabbit, deleteHabbit } from "../service/fetching"
 import { auth, dbRef, db } from "../setupFirebase"
 import {Link} from 'gatsby'
+import Fade from 'react-reveal/Fade';
 class EditHabbits extends React.Component {
   state = {
     userHabbits: [],
@@ -51,23 +52,25 @@ class EditHabbits extends React.Component {
     let userHabbits = this.props.state.userHabbits
    
     return (
-      <div>
+      <div className='editHabbits'>
         <form action="">
-          <select onChange={this.selectChange}>
+          <select className='btn' onChange={this.selectChange}>
             <option value={true}>Positiv</option>
             <option value={false}>Negativ</option>
           </select>
-          <input onChange={this.handleChange} type="text" />
-          <button onClick={e => this.handleSubmit(e)}>Add</button>
+          <input className='inp' onChange={this.handleChange} type="text" />
+          <button className='btn' onClick={e => this.handleSubmit(e)}>Add</button>
         </form>
+        <div className="editHabbits__grid">
         {this.state.userHabbits.map(habbit => (
           <li key={habbit.id}>
             {habbit.name}
             <button onClick={() => this.handleDelete(habbit.id)}>X</button>
-            <button><Link state={{userId:this.state.userId,
+            <button className='btn'><Link state={{userId:this.state.userId,
             habbit: habbit }} to='/Calendar'> Calendar</Link></button>
           </li>
         ))}
+        </div>
       </div>
     )
   }

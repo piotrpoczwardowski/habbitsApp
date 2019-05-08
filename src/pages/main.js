@@ -3,6 +3,7 @@ import { navigate } from "gatsby"
 import { auth, dbRef, db } from "../setupFirebase"
 import EditHabbits from "../components/EditHabbits"
 import Habbits from "../components/Habbits"
+import Fade from 'react-reveal/Fade';
 
 class main extends React.Component {
   state = {
@@ -48,7 +49,7 @@ class main extends React.Component {
 
   render() {
     let components = {
-      Habbits: <Habbits state={this.state} />,
+      Habbits: <Fade><Habbits state={this.state} /></Fade>,
       EditHabbits: <EditHabbits state={this.state} />,
     }
     return (
@@ -63,12 +64,13 @@ class main extends React.Component {
 
         <p>{this.state.user.email}</p>
 
-        <div />
+       
         {this.state.isLoading ? (
           "load"
         ) : (
           <div>{components[this.state.component]}</div>
         )}
+        
       </div>
     )
   }

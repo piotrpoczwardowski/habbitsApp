@@ -2,7 +2,7 @@ import React from "react"
 import { getUserHabbits, addHabbit, deleteHabbit } from "../service/fetching"
 import { auth, dbRef, db } from "../setupFirebase"
 import "../components/Habbits.css"
-import Bounce from 'react-reveal/Bounce';
+
 
 class Habbits extends React.Component {
   state = {

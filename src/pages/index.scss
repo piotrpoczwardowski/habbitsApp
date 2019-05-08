@@ -169,3 +169,33 @@ table{
         }
     }
 }
+
+//EditHabbits
+
+.editHabbits{
+    form{
+        text-align: center;
+        input{
+            border-radius: 0px;
+        }
+        button{
+            border-top-left-radius: 0px;
+            border-bottom-left-radius: 0px;
+            height: 40px;
+        }
+    }
+    select{
+        border-top: solid 1px purple;
+        outline: none;
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+        option{
+           color: black;
+           
+        }
+        
+    }
+    .editHabbits__grid{
+        display: grid
+    }
+}

@@ -157,3 +157,32 @@ table tbody td {
   padding: 10px 0;
   text-align: center;
 }
+
+.editHabbits form {
+  text-align: center;
+}
+
+.editHabbits form input {
+  border-radius: 0px;
+}
+
+.editHabbits form button {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  height: 40px;
+}
+
+.editHabbits select {
+  border-top: solid 1px purple;
+  outline: none;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.editHabbits select option {
+  color: black;
+}
+
+.editHabbits .editHabbits__grid {
+  display: grid;
+}
