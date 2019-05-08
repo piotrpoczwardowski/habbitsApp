@@ -19,6 +19,22 @@
   font-weight: bold;
 }
 
+.btn2 {
+  padding: 5px 15px;
+  background: white;
+  border: purple 1px solid;
+  border-radius: 5px;
+  color: #2e0e2e;
+  font-weight: bold;
+  outline: none;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.btn2:hover {
+  transform: scale(1.1);
+}
+
 .inp {
   margin: 5px auto;
   height: 40px;
@@ -149,7 +165,7 @@ table thead th:last-child {
 }
 
 table tbody tr:nth-child(even) {
-  background-color: #cecece;
+  background: radial-gradient(#c7c5c5, #e6e6e6, white);
 }
 
 table tbody td {
@@ -183,6 +199,64 @@ table tbody td {
   color: black;
 }
 
-.editHabbits .editHabbits__grid {
+.editHabbits .editHabbits__list {
   display: grid;
+}
+
+.editHabbits .editHabbits__list .habbit {
+  display: grid;
+  grid-template-columns: 50% 40% 10%;
+  text-align: center;
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.editHabbits .editHabbits__list .habbit:nth-child(even) {
+  background: radial-gradient(#c7c5c5, #e6e6e6, white);
+}
+
+.editHabbits .editHabbits__list .habbit__name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.calendar .btn {
+  width: 200px;
+  margin: 10px;
+}
+
+.calendar .title {
+  text-align: center;
+}
+
+.calendar .date__name {
+  width: 400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.calendar .date__name span {
+  font-size: 30px;
+}
+
+.calendar .calendar__contener {
+  margin-top: 50px;
+}
+
+.calendar table .done {
+  background: radial-gradient(white, white, #8c8cf7, white, white);
+  background-size: 50px 50px;
+  background-repeat: no-repeat;
+  background-position: center;
+  font-weight: bold;
+  color: black;
+}
+
+.calendar table tbody tr {
+  background: white;
 }

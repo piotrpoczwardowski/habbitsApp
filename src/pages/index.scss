@@ -24,6 +24,21 @@ body{
         font-weight: bold;
 }
 
+.btn2{
+    padding: 5px 15px;
+    background: white;
+    border: purple 1px solid;
+    border-radius: 5px;
+    color: rgb(46, 14, 46);
+    font-weight: bold;
+    outline: none;
+    cursor: pointer;
+    transition: transform 0.1s;
+    &:hover{
+        transform: scale(1.1)
+    }
+}
+
 .inp{
     
     margin: 5px auto;
@@ -160,7 +175,7 @@ table{
     }
 
     tbody{
-        tr:nth-child(even) {background-color: #cecece;}
+        tr:nth-child(even) {  background: radial-gradient(rgb(199, 197, 197),rgb(230, 230, 230), white);}
         td{
            height: 70px;
             padding: 10px 0;
@@ -195,7 +210,72 @@ table{
         }
         
     }
-    .editHabbits__grid{
-        display: grid
+
+    .editHabbits__list{
+       display: grid;
+       
+      
+
+       .habbit{
+           display: grid;
+           grid-template-columns: 50% 40% 10%;
+           text-align: center;
+         width: 80%;
+          margin: 0 auto;
+           padding: 20px;
+
+           &:nth-child(even){
+              background: radial-gradient(rgb(199, 197, 197),rgb(230, 230, 230), white)
+           }
+       }
+       .habbit__name{
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           font-weight: bold;
+           font-size: 25px;
+       }
+    }
+
+    
+}
+
+//calendar
+
+.calendar{
+    .btn{
+        width: 200px;
+        margin: 10px;
+    }
+    .title{
+        text-align: center;
+    }
+    .date__name{
+        width: 400px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        span{
+            font-size: 30px;
+        }
+        
+    }
+    .calendar__contener{
+        margin-top:50px;
+    }
+    table{
+        .done{
+           background: radial-gradient(white,rgb(255, 255, 255),rgb(140, 140, 247),white,white);
+           background-size: 50px 50px;
+           background-repeat: no-repeat;
+           background-position: center;
+           font-weight: bold;
+           color: rgb(0, 0, 0);
+        }
+        tbody{
+            tr{
+                background: white;
+            }
+        }
     }
 }
