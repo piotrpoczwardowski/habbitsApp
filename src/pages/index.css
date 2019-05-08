@@ -142,7 +142,9 @@
   background-size: cover;
 }
 
-table, th, td {
+table,
+th,
+td {
   border: 0px;
 }
 

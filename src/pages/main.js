@@ -26,7 +26,7 @@ class main extends React.Component {
           .then(x =>
             Object.values(x).map(user => {
               if (user.email === firebaseUser.email) {
-                this.setState({ currentUserData: user, isLoading: false })
+                this.setState({ currentUserData: user, isLoading: false, })
               }
             })
           )
@@ -58,6 +58,7 @@ class main extends React.Component {
     }
     return (
       <div className='main'>
+      {console.log(this.state)}
         <div className="navigation">
           <button className='btn btn__nav' onClick={this.changePage}>Habbits</button>{" "}
           <button className='btn btn__nav' onClick={this.changePage}>EditHabbits</button>
