@@ -104,6 +104,9 @@ body {
     width: 12%;
     min-width: 150px;
   }
+  .btn__nav{
+    margin-right: 10px;
+  }
 }
 
 //Habbits
@@ -125,9 +128,7 @@ body {
   height: 25px;
   display: inline-block;
   border-radius: 50%;
-  animation-name: check;
-  animation-duration: 0.4s;
-  animation-timing-function: cubic-bezier(0.44, 0.07, 0.07, 1.97);
+
 }
 
 .green {
