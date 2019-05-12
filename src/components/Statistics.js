@@ -31,10 +31,29 @@ class name extends React.Component {
     let negativeHabbitsDate = negativeHabbits.map(habbit =>
       Object.entries(habbit.date).map(([id, value]) => ({ id, ...value }))
     )
-    let negativeHabbitsDateisDone = negativeHabbitsDate.map(dates => dates.filter(date => date.isDone))
+    let negativeHabbitsDateisDone = negativeHabbitsDate.map(dates =>
+      dates.filter(date => date.isDone)
+    )
     var now = new Date()
+    now.setHours(0, 0, 0, 0)
+    let splitNow = `${now}`.split(" ")
+    let nowDay = splitNow[2]
+    let nowMonth = splitNow[1]
+    let nowYear = splitNow[3]
 
-    return <div>{console.log(now)}</div>
+    let numberOfAllNegativeHabbits = negativeHabbits.length
+    let negativeHabbitsDoneToday = negativeHabbitsDateisDone.map(dates =>
+      dates.map(date => {
+        let dateDay = date.id.split(" ")[2]
+        let dateMonth = date.id.split(" ")[1]
+        let dateYear = date.id.split(" ")[3]
+       return dateMonth
+      })
+    )
+    function countNegative(){
+      
+    }
+    return <div>{console.log(negativeHabbitsDoneToday)}</div>
   }
 }
 
