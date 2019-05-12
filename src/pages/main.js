@@ -5,6 +5,7 @@ import EditHabbits from "../components/EditHabbits"
 import Habbits from "../components/Habbits"
 import Fade from "react-reveal/Fade"
 import Calendar from "../components/Calendar"
+import Statistics from '../components/Statistics'
 
 class main extends React.Component {
   state = {
@@ -13,7 +14,7 @@ class main extends React.Component {
     currentUserData: {},
     isLoading: true,
     userHabbits: [],
-    component: "Habbits",
+    component: "Statistics",
     propHabbit: "",
   }
   componentWillMount() {
@@ -55,6 +56,9 @@ class main extends React.Component {
         
           <Habbits state={this.state} />
        
+      ),
+      Statistics: (
+        <Statistics state={this.state}/>
       ),
       EditHabbits: (
         <EditHabbits changePage={this.changePage} state={this.state} />
