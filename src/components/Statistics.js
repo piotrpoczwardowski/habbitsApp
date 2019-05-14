@@ -28,8 +28,14 @@ class name extends React.Component {
     let negativeHabbits = this.state.userHabbits.filter(
       habbit => habbit.isPositive === "false"
     )
+    let positiveHabbitsDate = positiveHabbits.map(habbit =>
+      Object.entries(habbit.date).map(([id, value]) => ({ id, ...value }))
+    )
     let negativeHabbitsDate = negativeHabbits.map(habbit =>
       Object.entries(habbit.date).map(([id, value]) => ({ id, ...value }))
+    )
+    let positiveHabbitsDateisDone = positiveHabbitsDate.map(dates =>
+      dates.filter(date => date.isDone)
     )
     let negativeHabbitsDateisDone = negativeHabbitsDate.map(dates =>
       dates.filter(date => date.isDone)
@@ -51,18 +57,68 @@ class name extends React.Component {
       let dateDay = date.id.split(" ")[2]
       let dateMonth = date.id.split(" ")[1]
       let dateYear = date.id.split(" ")[3]
-      console.log()
+
       if (dateYear === nowYear) {
-        negativeHabbitsDoneYear ++
-        if(dateMonth === nowMonth){
+        negativeHabbitsDoneYear++
+        if (dateMonth === nowMonth) {
           negativeHabbitsDoneMonth++
-          if(dateDay === nowDay){
+          if (dateDay === nowDay) {
             negativeHabbitsDoneToday++
           }
         }
       }
     }
-    return <div>{console.log(negativeHabbitsDoneToday)}</div>
+  
+ 
+    let positiveHabbitsDoneToday = 0
+    let positiveHabbitsDoneMonth = 0
+    let positiveHabbitsDoneYear = 0
+    positiveHabbitsDateisDone.map(dates => dates.map(countPositive))
+    function countPositive(date) {
+      let dateDay = date.id.split(" ")[2]
+      let dateMonth = date.id.split(" ")[1]
+      let dateYear = date.id.split(" ")[3]
+      console.log()
+      if (dateYear === nowYear) {
+        positiveHabbitsDoneYear++
+        if (dateMonth === nowMonth) {
+          positiveHabbitsDoneMonth++
+          if (dateDay === nowDay) {
+            positiveHabbitsDoneToday++
+          }
+        }
+      }
+    }
+    return (
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th>Period </th>
+              <th>Positive</th>
+              <th>Negative</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Today</td>
+              <td>{positiveHabbitsDoneToday}</td>
+              <td>{negativeHabbitsDoneToday}</td>
+            </tr>
+            <tr>
+              <td>Month</td>
+              <td>{positiveHabbitsDoneMonth}</td>
+              <td>{negativeHabbitsDoneMonth}</td>
+            </tr>
+            <tr>
+              <td>Year</td>
+              <td>{positiveHabbitsDoneYear}</td>
+              <td>{negativeHabbitsDoneYear}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    )
   }
 }
 

@@ -39,7 +39,7 @@ class Calendar extends React.Component {
 
     now.setMonth(now.getMonth() + i)
     this.setState({ now: now })
-    console.log(this.state.now)
+  
   }
 
   handleClick = (e, cellId) => {
@@ -152,7 +152,7 @@ class Calendar extends React.Component {
                      className={habbitDate.some(habbit => habbit.id === `${cell.date}` && habbit.isDone)?'done': undefined}
                       >
                         {cell && cell.date.getDate()}
-                  {console.log(habbitDate.map(x => x.id === `${cell.date}`))}
+                 
                       </td>
                     ))}
                   </tr>
